@@ -16,7 +16,7 @@ import { fetchWeatherData } from "../../store/weatherSlice";
 
 const DetailsPage = () => {
   // Extract the city parameter from the URL and initialize the Redux dispatch function
-  const { city } = useParams();
+  const { cityName } = useParams();
   const dispatch = useDispatch();
 
   // Get the selected city to display its details, the search results to display the rest of the cities, the current status and error from the Redux store
@@ -24,11 +24,11 @@ const DetailsPage = () => {
 
   // Fetch weather data for the specified city when the component mounts or the city changes
   useEffect(() => {
-    if (city) {
-      const formattedCity = decodeURIComponent(city);
+    if (cityName) {
+      const formattedCity = decodeURIComponent(cityName);
       dispatch(fetchWeatherData({cityName: formattedCity, count: 10 }));
     }
-  }, [city, dispatch]);
+  }, [cityName, dispatch]);
 
   // Load Loading component if the status is 'loading'
   if (status === "loading") {

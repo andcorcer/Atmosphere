@@ -51,6 +51,7 @@ const fetchForecast = async (latitude, longitude) => {
       longitude: longitude.toString(),
       hourly: "temperature_2m,weather_code",
       forecast_days: "1",
+      temperature_unit: "celsius",
       format: "json",
     },
   });

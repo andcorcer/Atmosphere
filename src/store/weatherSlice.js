@@ -27,7 +27,8 @@ const initialState = {
   selectedCity: null,
   searchResults: [],
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
-  error: null
+  error: null,
+  units: 'celsius' // Default unit for temperature measurements, can be 'celsius' || 'fahrenheit'
 };
 
 const weatherSlice = createSlice({
@@ -37,6 +38,9 @@ const weatherSlice = createSlice({
     setSelectedCity: (state, action) => {
       state.selectedCity = action.payload;
     },
+    setTemperatureUnit: (state, action) => {
+      state.units = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -56,5 +60,5 @@ const weatherSlice = createSlice({
   }
 });
 
-export const { setSelectedCity } = weatherSlice.actions;
+export const { setSelectedCity, setTemperatureUnit } = weatherSlice.actions;
 export default weatherSlice.reducer;
