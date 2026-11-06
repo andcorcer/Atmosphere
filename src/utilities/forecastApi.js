@@ -45,15 +45,14 @@ forecastApi.interceptors.response.use(
  */
 
 const fetchForecast = async (latitude, longitude) => {
-  const forecastParams = new URLSearchParams({
-    latitude: latitude.toString(),
-    longitude: longitude.toString(),
-    hourly: "temperature_2m,weather_code",
-    forecast_days: "1",
-    format: "json",
-  });
   const response = await forecastApi.get(`/forecast`, {
-    params: forecastParams,
+    params: {
+      latitude: latitude.toString(),
+      longitude: longitude.toString(),
+      hourly: "temperature_2m,weather_code",
+      forecast_days: "1",
+      format: "json",
+    },
   });
   const times = response.data.hourly.time;
   const temperatures = response.data.hourly.temperature_2m;
