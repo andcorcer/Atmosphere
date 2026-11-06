@@ -6,7 +6,7 @@ import fetchForecast from '../utilities/forecastApi';
 // Async thunk to fetch weather data for a given city
 export const fetchWeatherData = createAsyncThunk(
   'weather/fetchWeatherData',
-  async ({cityName, count }, { rejectWithValue }) => {
+  async ({cityName, count = 1 }, { rejectWithValue }) => {
     try {
       const cities = await fetchCityCoordinates(cityName, count);
       const results = [];
