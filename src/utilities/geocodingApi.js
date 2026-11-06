@@ -45,20 +45,29 @@ geocodingApi.interceptors.response.use(
  */
 
 const fetchCityCoordinates = async (cityName, count = 1) => {
-  const geocodingParams = new URLSearchParams({
-    name: cityName,
-    count: count.toString(),
-    format: "json",
-  });
   const response = await geocodingApi.get(`/search`, {
-    params: geocodingParams,
+    params: {
+      name: cityName,
+      count: count.toString(),
+      format: "json",
+    },
   });
-  const location = response.data?.results[0];
-  if (!location) {
+  const cities = response.data?.results;
+
+  if (!cities || cities.length === 0) {
     throw new Error(`No coordinates found for city: ${cityName}`);
   }
-  const { latitude, longitude, name } = location;
-  return { latitude, longitude, name };
+
+  // Manually cap the number of cities to the requested count
+  const cappedCities = cities.slice(0, count);
+
+  // cappedCities.forEach((city) => {
+  //   console.log(
+  //     `City: ${city.name}, Latitude: ${city.latitude}, Longitude: ${city.longitude}`,
+  //   );
+  // });
+
+  return cappedCities.map((city) => ({ latitude: city.latitude, longitude: city.longitude, name: city.name }));
 };
 
 export default fetchCityCoordinates;
