@@ -1,34 +1,39 @@
-import { useState, useEffect } from 'react'
-import { fetchWeatherData } from '../../store/weatherSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import fetchCityCoordinates from '../../utilities/geocodingApi';
+// Import all dependencies
+import { ThemeProvider } from "@emotion/react";
+import { theme } from "../../theme";
+import {
+  Route,
+  createRoutesFromElements,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
-function App() {
-  const dispatch = useDispatch()
-  const searchResults = useSelector((state) => state.weather.searchResults)
+// Import Components
+import Layout from "../Layout/Layout";
 
-  useEffect(() => {
-    fetchCityCoordinates('New', 5).then((coordinates) => {
-      console.log('Coordinates for New:', coordinates);
-    });
-    dispatch(fetchWeatherData({ cityName: 'New', count: 5 }));
-  }, [dispatch]);
+// Import Pages
+import HomePage from "../../pages/HomePage/HomePage";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
+import DetailsPage from "../../pages/DetailsPage/DetailsPage";
+
+// App Component
+const App = () => {
+  // Create the router
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="city/:cityName" element={<DetailsPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>,
+    ),
+  );
 
   return (
-    <>
-    <div>
-      {searchResults.map((city) => (
-        <div key={city.name}>
-          <h3>{city.name}</h3>
-          <p>Latitude: {city.latitude}</p>
-          <p>Longitude: {city.longitude}</p>
-          <p>Temperature: {city.temperatures[0]} {city.tempUnit}</p>
-          <p>Weather Code: {city.codes[0]}</p>
-        </div>
-      ))}
-    </div>
-    </>
-  )
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
