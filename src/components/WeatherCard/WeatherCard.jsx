@@ -64,12 +64,7 @@ const WeatherCard = ({ city }) => {
   const dispatch = useDispatch();
 
   // Deestructure the received city object to extract relevant details
-  const {
-    name,
-    times = [],
-    temperatures = [],
-    codes = [],
-  } = city || {};
+  const { name, times = [], temperatures = [], codes = [] } = city || {};
 
   // Weather unit from the Redux store (celsius or fahrenheit)
   const tempUnit = useSelector((state) => state.weather.units);
@@ -78,12 +73,26 @@ const WeatherCard = ({ city }) => {
   const watchlist = useSelector((state) => state.watchlist.items);
 
   // Determine the current time and find its index in the times array to highlight the current hour in the UI
-  const now = new Date();
-  const currentYear = now.getFullYear();
-  const currentMonth = String(now.getMonth() + 1).padStart(2, "0");
-  const currentDate = String(now.getDate()).padStart(2, "0");
-  const currentHour = String(now.getHours()).padStart(2, "0");
-  const currentTime = `${currentYear}-${currentMonth}-${currentDate}T${currentHour}:00`;
+
+  // Determine the timezone to correctly calculate the current time (fall back to the local timezone if not provided by the city object)
+  const timezone =
+    city?.timezone || Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  // Formatter to get the current time in the city's timezone
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    timeZone: timezone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    hour12: false,
+  });
+
+  // We get all the individual parts of the current date and time in the city's timezone
+  const parts = formatter.formatToParts(new Date());
+  const getPart = (type) => parts.find((part) => part.type === type)?.value;
+
+  const currentTime = `${getPart("year")}-${getPart("month")}-${getPart("day")}T${getPart("hour")}:00`;
   const currentIndex =
     times.indexOf(currentTime) !== -1 ? times.indexOf(currentTime) : 0;
 
@@ -108,7 +117,12 @@ const WeatherCard = ({ city }) => {
     <WeatherCardContainer onClick={handleSelectCity}>
       <HeaderContainer>
         <WeatherCardTitle>{name}</WeatherCardTitle>
-        <IconContainer active={watchlist.some((item) => item.name === name)} onClick={handleToggleWatchlist}><Star /></IconContainer>
+        <IconContainer
+          active={watchlist.some((item) => item.name === name)}
+          onClick={handleToggleWatchlist}
+        >
+          <Star />
+        </IconContainer>
       </HeaderContainer>
       <MetadataContainer>
         <WeatherCodeContainer>

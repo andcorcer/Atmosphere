@@ -34,7 +34,7 @@ export const HourlyWeatherContainer = styled.div`
 `;
 
 export const TimeLabel = styled.span`
-
+    background-color: ${({ active }) => (active ? "red" : "transparent")};
 `;
 
 export const WeatherCodeContainer = styled.div`

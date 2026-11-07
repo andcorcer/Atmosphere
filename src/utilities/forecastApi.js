@@ -52,6 +52,7 @@ const fetchForecast = async (latitude, longitude) => {
       hourly: "temperature_2m,weather_code",
       forecast_days: "1",
       temperature_unit: "celsius",
+      timezone: "auto",
       format: "json",
     },
   });
@@ -59,12 +60,14 @@ const fetchForecast = async (latitude, longitude) => {
   const temperatures = response.data.hourly.temperature_2m;
   const codes = response.data.hourly.weather_code;
   const tempUnit = response.data.hourly_units.temperature_2m;
+  const timezone = response.data.timezone;
 
   return {
     times,
     temperatures,
     codes,
     tempUnit,
+    timezone,
   };
 };
 
