@@ -14,7 +14,7 @@ export const DetailsCardTitle = styled.h2`
 `;
 
 export const IconContainer = styled.div`
-
+    
 `;
 
 export const CoordinatesContainer = styled.div`

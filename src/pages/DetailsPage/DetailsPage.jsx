@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 // Import Components
 import DetailsCard from "../../components/DetailsCard/DetailsCard";
 import CitiesContainer from "../../components/CitiesContainer/CitiesContainer";
+import UnitToggle from "../../components/UnitToggle/UnitToggle";
 import Loading from "../../components/Loading/Loading";
 import Error from "../../components/Error/Error";
 
@@ -13,6 +14,7 @@ import Error from "../../components/Error/Error";
 import { fetchWeatherData } from "../../store/weatherSlice";
 
 // Import Styles
+import { DetailsPageContainer } from "./DetailsPage.styles";
 
 const DetailsPage = () => {
   // Extract the city parameter from the URL and initialize the Redux dispatch function
@@ -41,12 +43,13 @@ const DetailsPage = () => {
   }
 
   return (
-    <div>
+    <DetailsPageContainer> 
+      <UnitToggle />
       <DetailsCard city={selectedCity} />
       {searchResults && searchResults.length > 0 && (
         <CitiesContainer cities={searchResults} />
       )}
-    </div>
+    </DetailsPageContainer>
   );
 };
 

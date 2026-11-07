@@ -78,7 +78,12 @@ const WeatherCard = ({ city }) => {
   const watchlist = useSelector((state) => state.watchlist.items);
 
   // Determine the current time and find its index in the times array to highlight the current hour in the UI
-  const currentTime = new Date().toISOString().slice(0, 13) + ":00";
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = String(now.getMonth() + 1).padStart(2, "0");
+  const currentDate = String(now.getDate()).padStart(2, "0");
+  const currentHour = String(now.getHours()).padStart(2, "0");
+  const currentTime = `${currentYear}-${currentMonth}-${currentDate}T${currentHour}:00`;
   const currentIndex =
     times.indexOf(currentTime) !== -1 ? times.indexOf(currentTime) : 0;
 
@@ -103,7 +108,7 @@ const WeatherCard = ({ city }) => {
     <WeatherCardContainer onClick={handleSelectCity}>
       <HeaderContainer>
         <WeatherCardTitle>{name}</WeatherCardTitle>
-        <IconContainer onClick={handleToggleWatchlist}><Star /></IconContainer>
+        <IconContainer active={watchlist.some((item) => item.name === name)} onClick={handleToggleWatchlist}><Star /></IconContainer>
       </HeaderContainer>
       <MetadataContainer>
         <WeatherCodeContainer>
