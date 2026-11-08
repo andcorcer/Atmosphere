@@ -6,6 +6,16 @@ const baseTheme = {
   typography: {
     fontFamily: "'Inter', sans-serif",
     baseFontSize: "100%", // 100% = 16px
+    mainHeadingFontSize: "2.5rem", 
+    subHeadingFontSize: "1.5rem", 
+    bodyFontSize: "0.85rem", 
+    fontWeight: "400",
+    headingFontWeight: "700",
+    buttonFontWeight: "600",
+  },
+
+  border: {
+    radius: "0.5rem",
   },
 
   transition: {
@@ -31,8 +41,8 @@ export const darkTheme = {
     textPrimary: "#FFFFFF",
     textSecondary: "#98A6BB",
     accent: "#00B4D8",
-    accentHover: "#90E0EF",
-    border: "#2A3A5F",
+    accentHover: "#0e8198",
+    border: "#475d8f",
     error: "#F87171",
     success: "#4ADE80",
   },
@@ -50,11 +60,11 @@ export const lightTheme = {
   colors: {
     background: "#E3F2FD",
     surface: "#ffffff",
-    textPrimary: "#0D47A1",
+    textPrimary: "#1e3e6d",
     textSecondary: "#546E7A",
-    accent: "#1976D2",
+    accent: "#358fe8",
     accentHover: "#1565C0",
-    border: "#BBDEFB",
+    border: "#7ba1c1",
     error: "#EF4444",
     success: "#22C55E",
   },

@@ -20,11 +20,15 @@ export const GlobalStyles = () => (
         color: ${theme.colors.textPrimary};
         font-family: ${theme.typography.fontFamily};
         font-size: ${theme.typography.baseFontSize};
-        min-height: 100vh;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
       }
       ::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
+        width: 10px;
+        height: 10px;
+        border-left: 1px solid ${theme.colors.border};
       }
 
       ::-webkit-scrollbar-track {
@@ -33,7 +37,8 @@ export const GlobalStyles = () => (
 
       ::-webkit-scrollbar-thumb {
         background: ${theme.colors.accent};
-        border-radius: 3px;
+        border-radius: 6px;
+        border: 2px solid transparent;
       }
 
       ::-webkit-scrollbar-thumb:hover {

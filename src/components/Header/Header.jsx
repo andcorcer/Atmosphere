@@ -25,10 +25,10 @@ const Header = () => {
           <Link to="/">Atmosphere</Link>
         </HeaderTitle>
         <HeaderButtonsContainer>
-          <HeaderButton active={theme === "light"} onClick={() => handleThemeToggle("light")}>
+          <HeaderButton $active={theme === "light"} onClick={() => handleThemeToggle("light")}>
             <Sun />
           </HeaderButton>
-          <HeaderButton active={theme === "dark"} onClick={() => handleThemeToggle("dark")}>
+          <HeaderButton $active={theme === "dark"} onClick={() => handleThemeToggle("dark")}>
             <Moon />
           </HeaderButton>
         </HeaderButtonsContainer>

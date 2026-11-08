@@ -39,7 +39,7 @@ const DetailsPage = () => {
 
   // Load Error component if there is an error
   if (status === "failed") {
-    return <Error error={error} />;
+    return <Error error={error} onRetry={() => dispatch(fetchWeatherData({cityName: decodeURIComponent(cityName), count: 10 }))} />;
   }
 
   return (
