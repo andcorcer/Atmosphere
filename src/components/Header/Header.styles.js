@@ -8,3 +8,11 @@ export const HeaderContainer = styled.header`
 export const HeaderTitle = styled.h1`
 
 `;
+
+export const HeaderButtonsContainer = styled.div`
+
+`;
+
+export const HeaderButton = styled.div`
+
+`;
