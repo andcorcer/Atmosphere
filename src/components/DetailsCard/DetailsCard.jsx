@@ -121,10 +121,11 @@ const DetailsCard = ({ city }) => {
   };
 
   return (
-    <DetailsCardContainer onClick={handleSelectCity}>
+    <DetailsCardContainer aria-label="Select city" onClick={handleSelectCity}>
       <HeaderContainer>
         <DetailsCardTitle>{name}</DetailsCardTitle>
         <StarContainer
+          aria-label="Toggle watchlist"
           $active={watchlist.some((item) => item.name === name)}
           onClick={handleToggleWatchlist}
         >

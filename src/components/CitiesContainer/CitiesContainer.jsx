@@ -5,15 +5,20 @@ import React from "react";
 import WeatherCard from "../WeatherCard/WeatherCard";
 
 // Import Styles
-import { CitiesContainerWrapper } from "./CitiesContainer.styles";
+import {
+  CitiesContainerWrapper,
+  NoCitiesMessage,
+} from "./CitiesContainer.styles";
 
 // CitiesContainer Component
 const CitiesContainer = ({ cities }) => {
   return (
     <CitiesContainerWrapper>
-      {cities.map((city, index) => (
-        <WeatherCard key={index} city={city} />
-      ))}
+      {cities && cities.length > 0 ? (
+        cities.map((city, index) => <WeatherCard key={index} city={city} />)
+      ) : (
+        <NoCitiesMessage>No cities available</NoCitiesMessage>
+      )}
     </CitiesContainerWrapper>
   );
 };

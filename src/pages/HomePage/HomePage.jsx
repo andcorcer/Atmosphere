@@ -7,6 +7,8 @@ import DetailsCard from "../../components/DetailsCard/DetailsCard";
 import CitiesContainer from "../../components/CitiesContainer/CitiesContainer";
 import Search from "../../components/Search/Search";
 import UnitToggle from "../../components/UnitToggle/UnitToggle";
+import Loading from "../../components/Loading/Loading";
+import Error from "../../components/Error/Error";
 
 // Import Actions
 import {
@@ -29,6 +31,8 @@ const initialDefaultCities = [
 
 const HomePage = () => {
   const dispatch = useDispatch();
+  const status = useSelector((state) => state.weather.status);
+  const error = useSelector((state) => state.weather.error);
 
   // Get the list of cities from the Redux store's watchlist state
   const citiesWatchlist = useSelector((state) => state.watchlist.items);
@@ -59,6 +63,25 @@ const HomePage = () => {
       dispatch(setSelectedCity(defaultCities[0]));
     }
   }, [citiesWatchlist, defaultCities, selectedCity, dispatch]);
+
+  // Load Loading component if the status is 'loading'
+  if (status === "loading") {
+    return <Loading />;
+  }
+
+  // Load Error component if there is an error
+  if (status === "failed") {
+    return (
+      <Error
+        error={error}
+        onRetry={() => {
+          dispatch(
+            fetchDefaultCitiesWeather({ defaultCities: initialDefaultCities }),
+          );
+        }}
+      />
+    );
+  }
 
   return (
     <HomePageContainer>

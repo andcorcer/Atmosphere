@@ -16,3 +16,9 @@ export const CitiesContainerWrapper = styled.div`
         padding: ${(props) => props.theme.spacing.sm};
     }
 `;
+
+export const NoCitiesMessage = styled.p`
+    text-align: center;
+    color: ${(props) => props.theme.colors.textSecondary};
+    font-size: ${(props) => props.theme.bodyFontSize};
+`;

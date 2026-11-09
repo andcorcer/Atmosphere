@@ -11,7 +11,7 @@ export const UnitToggleContainer = styled.div`
   background-color: ${(props) => props.theme.colors.surface};
 `;
 
-export const UnitToggleButton = styled.div`
+export const UnitToggleButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   border: none;

@@ -8,7 +8,12 @@ import { Sun, Moon } from "lucide-react";
 import { setTheme } from "../../store/themeSlice";
 
 // Import Styles
-import { HeaderContainer, HeaderTitle, HeaderButtonsContainer, HeaderButton } from './Header.styles';
+import {
+  HeaderContainer,
+  HeaderTitle,
+  HeaderButtonsContainer,
+  HeaderButton,
+} from "./Header.styles";
 
 // Header Component
 const Header = () => {
@@ -21,17 +26,25 @@ const Header = () => {
 
   return (
     <HeaderContainer>
-        <HeaderTitle className="title">
-          <Link to="/">Atmosphere</Link>
-        </HeaderTitle>
-        <HeaderButtonsContainer>
-          <HeaderButton $active={theme === "light"} onClick={() => handleThemeToggle("light")}>
-            <Sun />
-          </HeaderButton>
-          <HeaderButton $active={theme === "dark"} onClick={() => handleThemeToggle("dark")}>
-            <Moon />
-          </HeaderButton>
-        </HeaderButtonsContainer>
+      <HeaderTitle className="title">
+        <Link to="/">Atmosphere</Link>
+      </HeaderTitle>
+      <HeaderButtonsContainer>
+        <HeaderButton
+          aria-label="Light Theme"
+          $active={theme === "light"}
+          onClick={() => handleThemeToggle("light")}
+        >
+          <Sun />
+        </HeaderButton>
+        <HeaderButton
+          aria-label="Dark Theme"
+          $active={theme === "dark"}
+          onClick={() => handleThemeToggle("dark")}
+        >
+          <Moon />
+        </HeaderButton>
+      </HeaderButtonsContainer>
     </HeaderContainer>
   );
 };
