@@ -1,6 +1,3 @@
-// Import all dependencies
-import { useSelector } from "react-redux";
-
 // Define the baseTheme object for the application
 const baseTheme = {
   typography: {
