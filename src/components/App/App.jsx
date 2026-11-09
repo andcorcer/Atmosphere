@@ -1,12 +1,11 @@
 // Import all dependencies
 import { ThemeProvider } from "@emotion/react";
-import { theme } from "../../theme";
-import {
-  Route,
-  createRoutesFromElements,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Route, createRoutesFromElements, createBrowserRouter, RouterProvider } from "react-router-dom";
+
+// Import Styles 
+import { darkTheme, lightTheme } from "../../styles/theme";
+import { GlobalStyles } from "../../styles/GlobalStyles";
 
 // Import Components
 import Layout from "../Layout/Layout";
@@ -30,7 +29,8 @@ const App = () => {
   );
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={useSelector((state) => state.theme.theme === "dark" ? darkTheme : lightTheme)}>
+      <GlobalStyles />
       <RouterProvider router={router} />
     </ThemeProvider>
   );
