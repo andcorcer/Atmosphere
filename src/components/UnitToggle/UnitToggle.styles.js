@@ -15,6 +15,7 @@ export const UnitToggleButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   border: none;
+  color: ${(props) => props.theme.colors.textPrimary};
   padding: ${(props) => props.theme.spacing.sm}
     ${(props) => props.theme.spacing.md};
   border-radius: ${(props) => props.theme.border.radius};
