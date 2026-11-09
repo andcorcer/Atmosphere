@@ -24,13 +24,13 @@ import {
   DetailsCardContainer,
   HeaderContainer,
   DetailsCardTitle,
-  IconContainer,
+  StarContainer,
   CoordinatesContainer,
   MetadataText,
-  TimesContainer,
   HourlyWeatherContainer,
   TimeLabel,
   WeatherCodeContainer,
+  IconContainer,
   TemperatureContainer,
 } from "./DetailsCard.styles";
 
@@ -124,42 +124,39 @@ const DetailsCard = ({ city }) => {
     <DetailsCardContainer onClick={handleSelectCity}>
       <HeaderContainer>
         <DetailsCardTitle>{name}</DetailsCardTitle>
-        <IconContainer
-          active={watchlist.some((item) => item.name === name)}
+        <StarContainer
+          $active={watchlist.some((item) => item.name === name)}
           onClick={handleToggleWatchlist}
         >
           <Star />
-        </IconContainer>
+        </StarContainer>
       </HeaderContainer>
       <CoordinatesContainer>
         <MetadataText>Latitude: {latitude?.toFixed(2)}</MetadataText>
         <MetadataText>Longitude: {longitude?.toFixed(2)}</MetadataText>
       </CoordinatesContainer>
-      <TimesContainer>
-        {times.map((time, index) => {
-          const [description, icon] =
-            getWeatherDescription(codes?.[index]) || [];
-          return (
-            <HourlyWeatherContainer key={index}>
-              <TimeLabel active={index === currentIndex}>
-                Time: {time.split("T")[1]}
-              </TimeLabel>
-              <WeatherCodeContainer>
-                <IconContainer>{icon}</IconContainer>
-                <MetadataText>Weather: {description}</MetadataText>
-              </WeatherCodeContainer>
-              <TemperatureContainer>
-                <IconContainer>
-                  <Thermometer />
-                </IconContainer>
-                <MetadataText>
-                  {`Temperature: ${convertTemperature(temperatures?.[index], tempUnit)} ${tempUnit === "celsius" ? "°C" : "°F"}`}
-                </MetadataText>
-              </TemperatureContainer>
-            </HourlyWeatherContainer>
-          );
-        })}
-      </TimesContainer>
+      {times.map((time, index) => {
+        const [description, icon] = getWeatherDescription(codes?.[index]) || [];
+        return (
+          <HourlyWeatherContainer key={index}>
+            <TimeLabel $active={index === currentIndex}>
+              Time: {time.split("T")[1]}
+            </TimeLabel>
+            <WeatherCodeContainer>
+              <IconContainer>{icon}</IconContainer>
+              <MetadataText>{description}</MetadataText>
+            </WeatherCodeContainer>
+            <TemperatureContainer>
+              <IconContainer>
+                <Thermometer />
+              </IconContainer>
+              <MetadataText>
+                {`Temperature: ${convertTemperature(temperatures?.[index], tempUnit)} ${tempUnit === "celsius" ? "°C" : "°F"}`}
+              </MetadataText>
+            </TemperatureContainer>
+          </HourlyWeatherContainer>
+        );
+      })}
     </DetailsCardContainer>
   );
 };

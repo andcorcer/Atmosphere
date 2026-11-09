@@ -26,8 +26,8 @@ export const GlobalStyles = () => (
         color: inherit;
       }
       ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
         border-left: 1px solid ${theme.colors.border};
       }
 

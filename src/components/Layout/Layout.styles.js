@@ -6,9 +6,8 @@ export const AppContainer = styled.div`
   flex-direction: column;
   gap: ${(props) => props.theme.spacing.lg};
   min-height: 100vh;
-  overflow: hidden;
 `;
 
 export const MainContainer = styled.main`
-  padding: ${(props) => props.theme.spacing.lg};
+  padding: 0 ${(props) => props.theme.spacing.lg};
 `;

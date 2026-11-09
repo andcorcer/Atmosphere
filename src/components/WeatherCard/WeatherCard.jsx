@@ -24,6 +24,7 @@ import {
   WeatherCardContainer,
   HeaderContainer,
   WeatherCardTitle,
+  StarContainer,
   IconContainer,
   MetadataContainer,
   WeatherCodeContainer,
@@ -117,12 +118,12 @@ const WeatherCard = ({ city }) => {
     <WeatherCardContainer onClick={handleSelectCity}>
       <HeaderContainer>
         <WeatherCardTitle>{name}</WeatherCardTitle>
-        <IconContainer
-          active={watchlist.some((item) => item.name === name)}
+        <StarContainer
+          $active={watchlist.some((item) => item.name === name)}
           onClick={handleToggleWatchlist}
         >
           <Star />
-        </IconContainer>
+        </StarContainer>
       </HeaderContainer>
       <MetadataContainer>
         <WeatherCodeContainer>

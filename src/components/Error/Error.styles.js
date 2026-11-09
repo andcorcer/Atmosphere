@@ -36,4 +36,10 @@ export const ErrorButton = styled.button`
     border-color: ${(props) => props.theme.colors.accentHover};
     box-shadow: ${(props) => props.theme.shadows.md};
   }
+
+  &:active {
+    background-color: ${(props) => props.theme.colors.highlight};
+    border-color: ${(props) => props.theme.colors.highlight};
+    box-shadow: ${(props) => props.theme.shadows.sm};
+  }
 `;

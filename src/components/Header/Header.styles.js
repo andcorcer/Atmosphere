@@ -6,11 +6,17 @@ export const HeaderContainer = styled.header`
   top: 0;
   display: flex;
   justify-content: space-between;
+  gap: ${(props) => props.theme.spacing.lg};
+  flex-wrap: wrap;
   align-items: center;
   background-color: ${(props) => props.theme.colors.surface};
   border-bottom: ${(props) => `1px solid ${props.theme.colors.border}`};
   padding: ${(props) => props.theme.spacing.md}
     ${(props) => props.theme.spacing.lg};
+
+    @media (max-width: 550px) {
+      flex-direction: column;
+    }
 `;
 
 export const HeaderTitle = styled.h1`

@@ -12,5 +12,6 @@ export const HomePageContainer = styled.div`
 export const SearchContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: ${(props) => props.theme.spacing.xl};
 `;

@@ -24,8 +24,8 @@ const UnitToggle = () => {
 
   return (
     <UnitToggleContainer>
-      <UnitToggleButton onClick={() => handleUnitChange("celsius")}>°C</UnitToggleButton>
-      <UnitToggleButton onClick={() => handleUnitChange("fahrenheit")}>°F</UnitToggleButton>
+      <UnitToggleButton $active={tempUnit === "celsius"} onClick={() => handleUnitChange("celsius")}>°C</UnitToggleButton>
+      <UnitToggleButton $active={tempUnit === "fahrenheit"} onClick={() => handleUnitChange("fahrenheit")}>°F</UnitToggleButton>
     </UnitToggleContainer>
   );
 };
