@@ -35,7 +35,7 @@ export const HeaderButtonsContainer = styled.div`
   background-color: ${(props) => props.theme.colors.surface};
 `;
 
-export const HeaderButton = styled.div`
+export const HeaderButton = styled.button`
   background-color: transparent;
   cursor: pointer;
   border: none;

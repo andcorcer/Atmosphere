@@ -10,8 +10,8 @@ import { darkTheme } from "../../styles/theme";
 import Loading from "./Loading";
 
 // Function to render the ThemeProvider
-const renderWithTheme = (ui) => {
-  return render(<ThemeProvider theme={darkTheme}>{ui}</ThemeProvider>);
+const renderWithTheme = () => {
+  return render(<ThemeProvider theme={darkTheme}><Loading /></ThemeProvider>);
 };
 
 describe("Loading Component", () => {

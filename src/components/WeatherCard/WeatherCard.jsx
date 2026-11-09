@@ -115,10 +115,11 @@ const WeatherCard = ({ city }) => {
   };
 
   return (
-    <WeatherCardContainer onClick={handleSelectCity}>
+    <WeatherCardContainer onClick={handleSelectCity} aria-label="Select city">
       <HeaderContainer>
         <WeatherCardTitle>{name}</WeatherCardTitle>
         <StarContainer
+          aria-label="Toggle watchlist"
           $active={watchlist.some((item) => item.name === name)}
           onClick={handleToggleWatchlist}
         >
@@ -128,7 +129,7 @@ const WeatherCard = ({ city }) => {
       <MetadataContainer>
         <WeatherCodeContainer>
           <IconContainer>{icon}</IconContainer>
-          <MetadataText>Weather: {description}</MetadataText>
+          <MetadataText>{description}</MetadataText>
         </WeatherCodeContainer>
         <TemperatureContainer>
           <IconContainer>

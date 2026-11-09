@@ -2,9 +2,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-// Import Actions
-import { fetchWeatherData } from "../../store/weatherSlice";
-
 // Import Styles
 import { SearchForm, SearchInput, SearchButton } from "./Search.styles";
 

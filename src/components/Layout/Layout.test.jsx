@@ -20,8 +20,8 @@ const Details = () => <div data-testid="details-page">Details Page</div>;
 const renderWithRouter = (route = "/") => {
   window.history.pushState({}, "Test page", route);
   return render(
+    <Provider store={store}>
     <ThemeProvider theme={darkTheme}>
-      <Provider store={store}>
         <MemoryRouter initialEntries={[route]}>
           <Routes>
             <Route element={<Layout />}>
@@ -30,8 +30,8 @@ const renderWithRouter = (route = "/") => {
             </Route>
           </Routes>
         </MemoryRouter>
-      </Provider>
-    </ThemeProvider>,
+      </ThemeProvider>
+    </Provider>,
   );
 };
 
