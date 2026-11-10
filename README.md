@@ -1,16 +1,116 @@
-# React + Vite
+# Atmosphere
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[**Live Demo »**](https://atmosphere-web-app.netlify.app) &nbsp;·&nbsp; [**Bug Report**](https://github.com/andcorcer/Atmosphere/issues) &nbsp;·&nbsp; [**New Features**](https://github.com/andcorcer/Atmosphere/issues)
 
-Currently, two official plugins are available:
+A small responsive React and Redux web application built with Vite that uses the `Open-Meteo` API to fetch the weather data (climate string from weather codes and temperature) for cities to display, add them to your wathlist, view in detail and see said info in the corresponding timezone.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Home Page**: Displays the details of the selected city and a list of cities in your watchlst or some default popular cities.
+- **Search**: Allows to search cities by name andset the desired temperature displayed throught the entire application (between fahrenheit and celsius).
+- **Watchlist Management**: Add or remove cities to your watchlist in the local storage memory and priority rendering in the home page.
+- **Details Page**: Displays the search results for with a list of returned results and the details of a selected city.
+- **Responsive Dark UI**: Fully accessible, design built with modern CSS custom properties and box-sizing normalization.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend**: React 18, Redux Toolkit, Vite, Emotion CSS
+
+- **Deployment**: Netlify (Frontend)
+
+## Project Structure
+
+```text
+src/
+├── components/
+│   ├── App/
+│   ├── CitiesContainer/
+│   ├── DetailsCard/
+│   ├── Error/
+│   ├── Header/
+│   ├── Layout/
+│   ├── Loading/
+│   ├── Search/
+│   ├── UnitToggle/
+│   └── WeatherCard/
+├── pages/
+│   ├── HomePage/
+│   ├── NotFoundPage/
+│   └── DetailsPage/
+├── store/
+│   ├── themeSlice.js
+│   ├── watchlistSlice.js
+│   ├── weatherSlice.js
+│   └── store.js
+├── styles/
+│   ├── GlobalStyles.jsx
+│   └── theme.js
+├── utilities/
+│   ├── forecastApi.js
+│   ├── geocodingApi.js
+│   └── temperatures.js
+└── main.jsx
+```
+
+## Application Routes
+
+| Path              | Component          | Description                                         |
+| :---------------- | :----------------- | :-------------------------------------------------- |
+| `/`               | `<HomePage />`     | Displays wtachlist or fallback cities               |
+| `/city/:cityName` | `<DetailsPage />`  | Displays search results                             |
+| `*`               | `<NotFoundPage />` | Fallback page for handling invalid or outdated URLs |
+
+## State Management
+
+The application uses Redux Toolkit to manage global state across 3 slices (`theme`, `watchlist` and `weather`):
+
+```js
+state = {
+  theme: {
+    theme: // "light" || "dark"
+  },
+  watchlist: {
+    items: []
+  },
+  weather: {
+    selectedCity: null,
+    searchResults: [],
+    status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
+    error: null,
+    units: "celsius", // 'celsius' || 'fahrenheit'
+  },
+};
+```
+
+## Getting Started
+
+### Prerequisites
+
+- **Node.js:** `v18.0.0` or higher
+
+### Local Setup
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/andcorcer/Atmosphere.git
+   cd Atmosphere
+   ```
+
+2. **Frontend Setup**:
+
+   ```bash
+   # Install all Dependencies
+   npm install
+
+   # Run the Vite server (runs at http://localhost:5173)
+   npm run dev
+   ```
+
+## Deployment Configuration
+
+### Netlify
+
+Just create a project for it since it doesn't use any environmental variables or any other external resources.
