@@ -14,4 +14,9 @@ export const SearchContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: ${(props) => props.theme.spacing.xl};
+
+  @media (max-width: 550px) {
+    flex-direction: column;
+    gap: ${(props) => props.theme.spacing.md};
+  }
 `;
